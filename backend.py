@@ -1,6 +1,4 @@
 import requests
-import pprint
-import json
 
 
 def get_data(place, api_key):
@@ -19,10 +17,6 @@ def get_data(place, api_key):
         data = response.json()
         data_hourly = data['timelines']['hourly']
     except KeyError:
-       return None
+        return None
 
     return data_hourly
-
-if __name__ == '__main__':
-    pprint.pp(get_data('Turnov','oXOCwS6cfAnsRmT5WLka5m1D8eCSlnkT', 3))
-

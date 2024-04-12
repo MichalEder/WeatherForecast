@@ -1,8 +1,8 @@
 import streamlit as st
-import plotly.express as px
+
 
 from backend import get_data
-from functions.general import format_datetime, display_conditions, display_temperatures, filter_data
+from functions.general import display_conditions, display_temperatures, filter_data
 
 
 API_KEYS = [
@@ -59,10 +59,9 @@ elif place:
         st.write(f'I am not capable of providing weather information for this place ({place}) :(')
         st.write(f'Please check for typos.')
 
-
     elif data_hourly == '429':
         if st.session_state['reloads_counter'] < 5:
-            st.write('Try the reload button...if persists, connection dried out, due to too many usage, try it later, please.')
+            st.write('Try the reload button please.')
             st.button('Reload')
             st.session_state['reloads_counter'] = (st.session_state['reloads_counter'] + 1)
 
@@ -89,9 +88,3 @@ try:
 
 except NameError:
     pass
-
-st.session_state
-
-
-
-
