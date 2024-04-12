@@ -6,12 +6,9 @@ from functions.general import display_conditions, display_temperatures, filter_d
 
 
 API_KEYS = [
-    st.secrets('API_KEY_1'),
-    st.secrets('API_KEY_2'),
-    st.secrets('API_KEY_3'),
-    st.secrets('API_KEY_4'),
-    st.secrets('API_KEY_5')
-]
+    st.secrets["api_keys"]["api_keys"]]
+print(API_KEYS)
+
 
 if 'key_index' not in st.session_state:
     st.session_state['key_index'] = 0
