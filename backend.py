@@ -7,16 +7,15 @@ def get_data(place, api_key):
     response = requests.get(url, headers=headers)
 
     if response.status_code == 400:
-        print('400')
-        return '400'
+        return '400', '400'
 
     if response.status_code == 429:
-        print('429')
-        return '429'
+        return '429','429'
     try:
         data = response.json()
+        place_response = data['location']['name']
         data_hourly = data['timelines']['hourly']
     except KeyError:
         return None
 
-    return data_hourly
+    return data_hourly, place_response

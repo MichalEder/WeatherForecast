@@ -16,11 +16,13 @@ def filter_data(data, days):
     return filtered_data
 
 
-def display_temperatures(filtered_data, days, place):
+def display_temperatures(filtered_data, days):
     if days == 1:
-        st.subheader(f'Temperatures for the next {days} day in {place}')
+        st.subheader(f'Temperatures for the next {days} day:')
+
     else:
-        st.subheader(f'Temperatures for the next {days} days in {place}')
+        st.subheader(f'Temperatures for the next {days} days:')
+
     temperatures = [item['values']['temperature'] for item in filtered_data]
     dates = [item['time'] for item in filtered_data]
     figure = px.line(x=dates, y=temperatures, labels={'x': 'Date', 'y': 'Temperature (C)'},
@@ -28,11 +30,13 @@ def display_temperatures(filtered_data, days, place):
     st.plotly_chart(figure)
 
 
-def display_conditions(filtered_data, days, place):
+def display_conditions(filtered_data, days):
     if days == 1:
-        st.subheader(f'Condition for the next {days} day in {place}')
+        st.subheader(f'Condition for the next {days} day:')
+
     else:
-        st.subheader(f'Condition for the next {days} days in {place}')
+        st.subheader(f'Condition for the next {days} days:')
+
 
     conditions = [item['values']['weatherCode'] for item in filtered_data]
     images = [f'resources/images/{condition}0.png' for condition in conditions]
