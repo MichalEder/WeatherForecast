@@ -4,10 +4,7 @@ import streamlit as st
 from backend import get_data
 from functions.general import display_conditions, display_temperatures, filter_data
 
-
-API_KEYS = [
-    st.secrets["api_keys"]["api_keys"]]
-print(API_KEYS)
+API_KEYS = st.secrets["api_keys"]["api_keys"]
 
 
 if 'key_index' not in st.session_state:
