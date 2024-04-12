@@ -6,20 +6,12 @@ from functions.general import display_conditions, display_temperatures, filter_d
 
 
 API_KEYS = [
-    'oXOCwS6cfAnsRmT5WLka5m1D8eCSlnkT',
-    'noPtJt60KKXnq3xb6JoFi8zN2XwUaVUa',
-    'rHjlcHFxvwATefNroaVAJApPSOhWNffg',
-    '96aujtKDGRHw9W7Nrt2wnEqmf7lQJMwe',
-    'N3nW2nc8UfFR7gh3VoXTRKd5zthf3BUy'
+    st.secrets('API_KEY_1'),
+    st.secrets('API_KEY_2'),
+    st.secrets('API_KEY_3'),
+    st.secrets('API_KEY_4'),
+    st.secrets('API_KEY_5')
 ]
-
-# API_KEYS = [
-#     st.secrets('API_KEY_1'),
-#     st.secrets('API_KEY_2'),
-#     st.secrets('API_KEY_3'),
-#     st.secrets('API_KEY_4'),
-#     st.secrets('API_KEY_5')
-# ]
 
 if 'key_index' not in st.session_state:
     st.session_state['key_index'] = 0
@@ -76,7 +68,7 @@ elif place:
         st.session_state['weather_data'] = data_hourly
         st.session_state['place'] = place
 else:
-    st.subheader('Eneter place and days')
+    st.subheader('Enter place and days please.')
 try:
     col1, col2, col3 = st.columns([4, 0.1, 4])
 
