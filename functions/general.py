@@ -25,8 +25,7 @@ def display_temperatures(filtered_data, days):
 
     temperatures = [item['values']['temperature'] for item in filtered_data]
     dates = [item['time'] for item in filtered_data]
-    figure = px.line(x=dates, y=temperatures, labels={'x': 'Date', 'y': 'Temperature (C)'},
-                     width=800, height=400)
+    figure = px.line(x=dates, y=temperatures, labels={'x': 'Date', 'y': 'Temperature (C)'})
     st.plotly_chart(figure)
 
 
