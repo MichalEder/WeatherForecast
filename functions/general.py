@@ -37,8 +37,15 @@ def display_conditions(filtered_data, days):
         st.subheader(f'Condition for the next {days} days:')
 
 
-    conditions = [item['values']['weatherCode'] for item in filtered_data]
-    images = [f'resources/images/{condition}0.png' for condition in conditions]
-
     dates = [format_datetime(item['time']) for item in filtered_data]
-    st.image(images, caption=dates, width=50)
+    dates_headers = sorted({date[:6] for date in dates})
+
+    for date in dates_headers:
+        st.subheader(date)
+        data_for_date = [item for item in filtered_data if
+                      format_datetime(item['time'])[:6] == date[:6]]
+
+        conditions = [item['values']['weatherCode'] for item in data_for_date]
+        images = [f'resources/images/{condition}0.png' for condition in conditions]
+        dates = [format_datetime(item['time']) for item in data_for_date]
+        st.image(images, caption=dates, width=50)
