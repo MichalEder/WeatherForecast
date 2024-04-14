@@ -3,10 +3,11 @@ import streamlit as st
 import plotly.express as px
 
 
-def format_datetime(date_str):
-    date_time = datetime.datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%SZ")
-    formatted_date = date_time.strftime("%d.%m.\n %H:%M")
-    return formatted_date
+def format_date_time(date_str):
+    date_time = datetime.datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%SZ')
+    formatted_date = date_time.strftime('%d.%m.')
+    formatted_time =  date_time.strftime('%H:%M')
+    return formatted_date, formatted_time
 
 
 def filter_data(data, days):
@@ -36,16 +37,15 @@ def display_conditions(filtered_data, days):
     else:
         st.subheader(f'Condition for the next {days} days:')
 
-
-    dates = [format_datetime(item['time']) for item in filtered_data]
-    dates_headers = sorted({date[:6] for date in dates})
+    dates = [format_date_time(item['time']) for item in filtered_data]
+    dates_headers = sorted({date[0] for date in dates})
 
     for date in dates_headers:
         st.subheader(date)
         data_for_date = [item for item in filtered_data if
-                      format_datetime(item['time'])[:6] == date[:6]]
+                      format_date_time(item['time'])[0] == date]
 
         conditions = [item['values']['weatherCode'] for item in data_for_date]
         images = [f'resources/images/{condition}0.png' for condition in conditions]
-        dates = [format_datetime(item['time']) for item in data_for_date]
-        st.image(images, caption=dates, width=50)
+        hours = [format_date_time(item['time'])[1] for item in data_for_date]
+        st.image(images, caption=hours, width=50)
